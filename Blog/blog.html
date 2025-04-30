@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eletrônica na Prática</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="circuito-eletronico.png">
+</head>
+
+<body>
+    <header>
+        <h1>Eletrônica na Prática</h1>
+        <div class="search-container">
+            <form id="search-form">
+                <input type="text" id="search-input" placeholder="Pesquisar no blog...">
+                <button type="submit" id="search-button">Buscar</button>
+            </form>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Artigos</a></li>
+            <li><a href="#">Pesquisa</a></li>
+            <li><a href="#">Contato</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <article>
+            <h2>Sensor Resistivo: Medição da Umidade do Solo</h2>
+
+            <div class="post-date">
+                <time datetime="2025-04-30"><strong>Publicado em:</strong> 30 de Abril de 2025</time>
+            </div>
+
+            <div class="author-info">
+                <p><strong>Autor:</strong> Calebe Sucupira de Oliveira</p>
+                <p><strong>Instituição:</strong> Universidade Federal do Ceará</p>
+            </div>
+            <div class="post-image">
+                <figure>
+                    <img src="photo_2024-09-10_14-38-52.jpg" alt="Protótipo do sensor">
+                    <figcaption>Figura 1: Protótipo do sensor</figcaption>
+                </figure>
+            </div>
+
+            <section>
+                <h3>Resumo</h3>
+                <p>Este artigo aborda a construção e análise crítica de um sensor resistivo para medição da umidade do
+                    solo, com foco específico na avaliação do comportamento da resistência elétrica em diferentes tipos
+                    de solo, como terra e adubo. O sensor desenvolvido utiliza dois eletrodos de alumínio para medir a
+                    variação de resistência em função da umidade do solo.
+                    O estudo detalha o processo de construção do sensor, incluindo a seleção dos materiais e a montagem
+                    do circuito do sensor, além das técnicas utilizadas para a medição da resistência. O artigo também
+                    apresenta uma análise crítica dos resultados obtidos, comparando a resposta do sensor em diferentes
+                    tipos de solo e discutindo as implicações das variações na resistência para a medição da umidade. A
+                    pesquisa mostra informações que contribuem para a compreensão da realação de umidade e resistência
+                    no solo.</p>
+            </section>
+
+            <section>
+                <h3>Introdução</h3>
+                <p>A medição da umidade do solo desempenha um papel fundamental em diversas áreas, como a agricultura de
+                    precisão, a geotecnia e o monitoramento ambiental. Entre os diversos métodos de medição, os sensores
+                    resistivos têm ganhado destaque por sua simplicidade, baixo custo e fácil implementação. Esses
+                    sensores funcionam com base no princípio de que a resistência elétrica do solo varia de acordo com o
+                    teor de água presente, uma vez que a água, por conter íons dissolvidos, é um condutor elétrico muito
+                    mais eficiente do que o solo seco (Zheng et al., 2019).
+
+                    A construção de sensores resistivos envolve a utilização de eletrodos, comumente de materiais como
+                    alumínio ou aço inoxidável, que são inseridos no solo para medir sua resistência elétrica. A
+                    simplicidade desse método contrasta com a complexidade das propriedades físicas do solo, como a sua
+                    textura, densidade e composição, que influenciam diretamente na capacidade do solo de reter e
+                    conduzir água (Gao et al., 2021). Estudos indicam que diferentes tipos de solo apresentam variações
+                    significativas na resposta dos sensores resistivos, sendo necessário ajustar as medições de acordo
+                    com as características específicas do ambiente monitorado (Smith & Brown, 2017).
+
+                    Dessa forma, compreender as propriedades do solo e seu comportamento em resposta às mudanças de
+                    umidade é crucial para o desenvolvimento de sensores precisos e confiáveis (Li et al., 2020). Este
+                    artigo explora a construção de um sensor resistivo de umidade do solo, detalhando os materiais
+                    utilizados, os testes realizados e as influências das propriedades do solo sobre as medições da
+                    resistência.</p>
+            </section>
+
+            <section>
+                <h3>Propriedades do Solo</h3>
+                <p>As propriedades físicas do solo, como textura, porosidade e composição química, afetam diretamente as
+                    medições de umidade por resistência elétrica. Solos com alta porosidade, como os arenosos, permitem
+                    maior drenagem de água, resultando em menor condutividade elétrica e, consequentemente, maior
+                    resistência em condições secas (Topp et al., 1980). Em contraste, solos mais compactos e com alta
+                    capacidade de retenção de água, como os argilosos, apresentam maior condutividade elétrica quando
+                    úmidos, reduzindo a resistência (Gardner et al., 1991).
+
+                    Quando o solo está seco, a quantidade reduzida de água nos poros provoca um aumento significativo na
+                    resistência, uma vez que a água, ao conduzir íons, facilita o fluxo de corrente elétrica. À medida
+                    que o solo absorve água, a resistência diminui progressivamente, já que a água atua como meio
+                    condutor (Gao et al., 2012). A salinidade e a presença de sais dissolvidos no solo também
+                    influenciam a medição, aumentando a condutividade elétrica e alterando os resultados da umidade
+                    estimada (Bittelli, 2011).</p>
+            </section>
+
+            <section>
+                <h3>Comparação entre Trabalhos Pesquisados</h3>
+                Diversos estudos têm investigado diferentes métodos para medir a umidade do solo, utilizando sensores
+                resistivos em diferentes condições e tipos de solo. A Tabela 1 apresenta uma comparação entre alguns dos
+                principais trabalhos pesquisados e o presente estudo. Cada trabalho avaliou a eficácia dos sensores
+                resistivos em solos com características distintas, como solos argilosos, arenosos e agrícolas. Além
+                disso, foram utilizados diferentes materiais para os eletrodos, o que influencia diretamente nas
+                medições de resistência.
+
+                O presente trabalho, por sua vez, foca na construção de um sensor resistivo utilizando eletrodos de
+                alumínio, testado em dois tipos de solo: terra e adubo. A seguir, são comparados os principais
+                resultados encontrados em cada estudo, evidenciando as particularidades de cada abordagem e os desafios
+                na medição da umidade em diferentes contextos.
+                <div class="table-container">
+                    <table class="comparative-table">
+                        <caption>Tabela 1: Comparativo entre os trabalhos pesquisados e o trabalho proposto</caption>
+                        <thead>
+                            <tr>
+                                <th>Referência</th>
+                                <th>Objetivo</th>
+                                <th>Sensor Utilizado</th>
+                                <th>Eletrodos</th>
+                                <th>Solo Avaliado</th>
+                                <th>Resultados</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Gao et al. (2012)</strong></td>
+                                <td>Avaliar a condutividade elétrica do solo em relação ao teor de umidade</td>
+                                <td>Sensor resistivo de solo</td>
+                                <td>Aço inoxidável</td>
+                                <td>Solos argilosos e arenosos</td>
+                                <td>Solos argilosos apresentaram menor resistência elétrica em comparação aos arenosos
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Bittelli (2011)</strong></td>
+                                <td>Revisar métodos de medição de umidade do solo e comparar sensores</td>
+                                <td>Vários tipos de sensores</td>
+                                <td>Diversos (cobre, aço inoxidável)</td>
+                                <td>Solo agrícola</td>
+                                <td>Sensores resistivos mais afetados pela salinidade do solo</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Zheng et al. (2019)</strong></td>
+                                <td>Desenvolver sensor de umidade de baixo custo</td>
+                                <td>Sensor resistivo de baixo custo</td>
+                                <td>Fios de cobre</td>
+                                <td>Solo agrícola e arenoso</td>
+                                <td>Bom desempenho em solos agrícolas, variações em arenosos</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Este Trabalho</strong></td>
+                                <td>Construção de sensor resistivo para dois tipos de solo</td>
+                                <td>Sensor com eletrodos de alumínio</td>
+                                <td>Alumínio</td>
+                                <td>Terra e adubo</td>
+                                <td>Adubo apresentou maior resistência devido à porosidade</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section>
+                <h3>Montagem do Sensor</h3>
+                <figure>
+                    <img src="circuito_projeto_final.drawio.png" alt="Diagrama do circuito do sensor"
+                        class="post-image">
+                    <figcaption>Figura 2: Diagrama do circuito do sensor</figcaption>
+                </figure>
+
+                <h4>Materiais Utilizados:</h4>
+                <ul>
+                    <li><strong>Eletrodos de Alumínio:</strong> Foram utilizados dois eletrodos de alumínio, cada um com
+                        resistência de
+                        800Ω, comprimento de 6,5cm e diâmetro de 2mm. O alumínio foi escolhido devido à sua boa
+                        condutividade elétrica e resistência à corrosão. </li>
+                    <li>Resistor de 10kΩ: Foi utilizado um resistor de 10kΩ em série com o circuito, funcionando como
+                        referência para o cálculo da queda de tensão, garantindo maior precisão nas medições.</li>
+                    <li><strong>Fonte de Tensão 5V:</strong> A alimentação do circuito foi realizada por uma fonte de
+                        5V. A tensão foi aplicada a um dos eletrodos, e, com o multímetro, foi possível medir a tensão
+                        que chegava ao outro eletrodo.</li>
+                    <li><strong>Jumpers e multímetro:</strong>Os jumpers são utilizados para realizar a
+                        conexão entre os eletrodos de alumínio, a fonte de tensão e os terminais de medição do
+                        multímetro.</li>
+                </ul>
+                <p>Para a montagem do sensor, os eletrodos foram espaçados em 2 cm e inseridos no solo. Em seguida, foi
+                    aplicada uma tensão de 5V, que passou pelo resistor de referência antes de alcançar um dos
+                    eletrodos. Por fim, a conexão foi feita no multímetro juntamente com o segundo eletrodo para a
+                    coleta e análise dos dados.</p>
+            </section>
+
+            <section class="methodology">
+                <h2>Metodologia de Ensaio</h2>
+
+                <p class="indent">Para a realização dos testes, foram utilizadas amostras de solo com 200 g cada. A água
+                    utilizada nos ensaios foi proveniente do sistema de tratamento da CAGECE (Companhia de Água e Esgoto
+                    do Estado do Ceará).</p>
+
+                <div class="subsection">
+                    <h3>Determinação da Resistência Inicial</h3>
+                    <p class="indent">Inicialmente, preparou-se uma amostra de solo completamente seca. Os eletrodos de
+                        alumínio foram inseridos na amostra e a medição da resistência foi realizada, estabelecendo a
+                        resistência inicial para a amostra sem umidade.</p>
+                </div>
+
+                <div class="subsection">
+                    <h3>Adição de Água e Medição</h3>
+                    <p class="indent">A cada etapa, 10 ml de água foram adicionados à amostra de solo. Após a adição de
+                        água, a amostra foi misturada para garantir que a umidade fosse distribuída uniformemente. Em
+                        seguida, a resistência do solo foi medida através do princípio ativo e registrada. Esse
+                        procedimento foi repetido, com adições sucessivas de 10 ml de água, até que o solo atingisse o
+                        ponto de saturação.</p>
+                </div>
+
+                <div class="subsection">
+                    <h3>Repetição para Diferentes Amostras</h3>
+                    <p class="indent">O procedimento descrito foi replicado para dois tipos de solo: terra e adubo, a
+                        fim de comparar o comportamento de resistência elétrica em diferentes composições de solo.</p>
+                </div>
+
+                <div class="subsection">
+                    <h3>Coleta de Dados</h3>
+                    <p class="indent">As medições de resistência foram realizadas utilizando o princípio ativo. A regra
+                        do divisor de tensão possibilita determinar a tensão através de um resistor em série sem
+                        precisar saber o valor da corrente do circuito.</p>
+
+                    <div class="formula">
+                        <p>V = (V<sub>f</sub> × R<sub>1</sub>) / (R<sub>1</sub> + R<sub>2</sub>)</p>
+                    </div>
+
+                    <div class="variables">
+                        <p>Onde:</p>
+                        <ul>
+                            <li><strong>R<sub>1</sub>:</strong> Resistência do solo</li>
+                            <li><strong>V:</strong> Queda de tensão</li>
+                            <li><strong>V<sub>f</sub>:</strong> Tensão fornecida ao circuito</li>
+                            <li><strong>R<sub>2</sub>:</strong> Resistência de referência</li>
+                        </ul>
+                    </div>
+
+                    <p class="indent">A coleta de dados foi realizada utilizando um multímetro, que nos fornecia a
+                        tensão no solo. Para determinar a queda de tensão, foi necessário subtrair o valor fornecido
+                        pelo multímetro da tensão de entrada V<sub>f</sub>. Com esse valor, pudemos aplicar corretamente
+                        a fórmula de divisão de tensão para calcular a resistência do solo.</p>
+                </div>
+            </section>
+
+            <section>
+                <h3>Resultados</h3>
+                <div class="image-grid">
+                    <figure>
+                        <img src="variacao_no_adubo.png" alt="Variação no adubo">
+                        <figcaption>Gráfico 1: Variação da resistência no adubo</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="variacao_na_terra.png" alt="Variação na terra">
+                        <figcaption>Gráfico 2: Variação da resistência na terra</figcaption>
+                    </figure>
+                </div>
+                <a href="https://github.com/calebe-sucupira/Sensor-Resistivo-Medicao-da-Umidade-do-Solo.git"
+                    target="_blank" class="button">
+                    Ver Tabela de dadosno GitHub
+                </a>
+                <div class="subsection">
+                    <h4>Comportamento da Resistência em Função da Umidade</h4>
+                    <p class="indent">No adubo, a resistência inicial (seco) foi de aproximadamente
+                        <strong>3,32MΩ</strong>, enquanto na terra esse valor foi significativamente menor, em torno de
+                        <strong>1,22MΩ</strong>. Esses resultados indicam que o adubo, em estado seco, possui uma
+                        estrutura que oferece maior resistência à passagem de corrente elétrica em comparação com a
+                        terra.
+                    </p>
+
+                    <p class="indent">À medida que a água foi adicionada, ambos os materiais apresentaram quedas
+                        significativas na resistência. No entanto, o adubo manteve valores de resistência mais elevados
+                        do que a terra para os mesmos volumes de água, o que está relacionado à sua composição e
+                        porosidade.</p>
+                </div>
+
+                <div class="subsection">
+                    <h4>Diferenças entre Adubo e Terra</h4>
+                    <p class="indent">Uma observação importante é a diferença na quantidade de água necessária para que
+                        os dois tipos de solo atinjam a saturação. No adubo, a saturação ocorreu com <strong>90
+                            ml</strong> de água, enquanto na terra, a saturação foi alcançada mais rapidamente, com
+                        <strong>70 ml</strong> de água.
+                    </p>
+
+                    <p class="indent">Essas diferenças podem ser atribuídas às características físicas de cada material.
+                        O adubo, por ser mais poroso e rico em matéria orgânica, tende a reter mais água, resultando em
+                        uma saturação mais lenta. Solos com alta porosidade e alto conteúdo orgânico possuem maior
+                        capacidade de retenção de água, o que diminui a taxa de percolação e aumenta o tempo necessário
+                        para atingir a saturação total<sup><a href="#brady2019">1</a></sup>. Já a terra, com uma
+                        estrutura menos porosa e menor concentração de matéria orgânica, absorve menos água antes de
+                        atingir a saturação.</p>
+                </div>
+            </section>
+
+            <section>
+                <h3>Conclusão</h3>
+                <p>Portanto, é notório que a resistência elétrica dos solos diminui à medida que a umidade aumenta, e
+                    com o solo de adubo apresenta uma resistência maior do que a terra. Isso indica que o solo de adubo
+                    tem uma menor condutividade elétrica devido à sua composição. Essas variações nas características
+                    dos materiais dos solos afetam a medição da umidade com sensores resistivos, mostrando como a
+                    composição do solo influencia a interpretação dos dados obtidos.
+                </p>
+            </section>
+        </article>
+
+        <aside>
+            <h3>Artigos Relacionados</h3>
+            <div class="references">
+                <ol>
+                    <li id="gao2021">
+                        Gao, X., Liu, H., &amp; Zhang, Y. (2021). 
+                        <a href="https://doi.org/10.1016/j.jaeger.2021.04.003" target="_blank" rel="noopener">
+                            Soil Moisture Measurement Using Resistive Sensors: A Review of Methods and Challenges
+                        </a>. 
+                        <em>Journal of Agricultural Engineering Research</em>, 112(2), 157-165.
+                    </li>
+                    
+                    <li id="li2020">
+                        Li, Z., Wang, Y., &amp; Jiang, P. (2020). 
+                        <a href="https://doi.org/10.1007/s10661-020-08686-4" target="_blank" rel="noopener">
+                            Calibration and Field Applications of Resistive Soil Moisture Sensors
+                        </a>. 
+                        <em>Environmental Monitoring and Assessment</em>, 192, 116.
+                    </li>
+        
+                    <li id="smith2017">
+                        Smith, D., &amp; Brown, A. (2017). 
+                        <a href="https://doi.org/10.1016/j.sna.2017.03.015" target="_blank" rel="noopener">
+                            Influence of Soil Texture on Resistive Moisture Sensors
+                        </a>. 
+                        <em>Sensors and Actuators A: Physical</em>, 248, 225-233.
+                    </li>
+        
+                    <li id="zheng2019">
+                        Zheng, Q., Zhang, Z., &amp; Feng, J. (2019). 
+                        <a href="https://doi.org/10.1109/JSEN.2019.2938818" target="_blank" rel="noopener">
+                            Design and Performance Evaluation of a Low-Cost Resistive Soil Moisture Sensor
+                        </a>. 
+                        <em>IEEE Sensors Journal</em>, 19(22), 10803-10810.
+                    </li>
+        
+                    <li id="bittelli2011">
+                        Bittelli, M. (2011). 
+                        <a href="https://doi.org/10.30638/eemj.2011.081" target="_blank" rel="noopener">
+                            Measuring Soil Water Content: A Review of Methods and Applications
+                        </a>. 
+                        <em>Environmental Engineering and Management Journal</em>, 10(6), 593-607.
+                    </li>
+        
+                    <li id="gardner1991">
+                        Gardner, W. R. (1991). Water Retention and Conductivity: Influence of Soil Texture and Structure. 
+                        <em>Soil Science Society of America Journal</em>, 55, 1260-1266.
+                    </li>
+        
+                    <li id="gao2012">
+                        Gao, Y., Fan, J., &amp; Wang, Y. (2012). 
+                        <a href="https://doi.org/10.1016/j.jhydrol.2012.06.021" target="_blank" rel="noopener">
+                            Electrical Conductivity of Different Types of Soil in Relation to Water Content
+                        </a>. 
+                        <em>Journal of Hydrology</em>, 458, 44-49.
+                    </li>
+        
+                    <li id="topp1980">
+                        Topp, G. C., Davis, J. L., &amp; Annan, A. P. (1980). 
+                        <a href="https://doi.org/10.1029/WR016i003p00574" target="_blank" rel="noopener">
+                            Electromagnetic Determination of Soil Water Content: Measurements in Coaxial Transmission Lines
+                        </a>. 
+                        <em>Water Resources Research</em>, 16(3), 574-582.
+                    </li>
+        
+                    <li id="rhoades1996">
+                        Rhoades, J. D. (1996). Salinity: Electrical Conductivity and Total Dissolved Solids. In: 
+                        <em>Methods of Soil Analysis: Part 3 — Chemical Methods</em>. Soil Science Society of America.
+                    </li>
+        
+                    <li id="brady2008">
+                        Brady, N. C., &amp; Weil, R. R. (2008). 
+                        <em>The Nature and Properties of Soils</em>. Pearson Prentice Hall.
+                    </li>
+                </ol>
+            </div>
+        </aside>
+    </main>
+    <footer>
+        <p>&copy; 2025 Eletrônica na Prática - Tecnologia Aplicada ao Campo</p>
+    </footer>
+
+    <script>
+        
+    </script>
+</body>
+
+</html>
