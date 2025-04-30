@@ -113,7 +113,6 @@ th {
     color: white;
 }
 
-/* Rodapé */
 footer {
     background-color: #27ae60;
     color: white;
@@ -122,7 +121,10 @@ footer {
     margin-top: 2rem;
 }
 
-/* Responsividade */
+section {
+    margin-bottom: 2rem; /* Espaço entre seções */
+}
+
 @media (max-width: 768px) {
     main {
         flex-direction: column;
@@ -148,9 +150,11 @@ footer {
 }
 
 .post-image img {
-    width: 400px; /* Largura fixa */
-    height: 300px; /* Altura fixa */
-    object-fit: cover; /* Mantém a proporção da imagem */
+    width: 100%; 
+    max-width: 400px;
+    height: auto; 
+    display: block;
+    margin: 0 auto;
 }
 
 @media (max-width: 480px) {
