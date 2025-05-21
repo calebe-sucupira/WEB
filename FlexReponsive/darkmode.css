@@ -1,0 +1,138 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0e0e0e;
+    color: #f0f0f0;
+}
+
+header {
+    position: relative;
+    background-color: #145d51;
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+    border-bottom: 2px solid #0a3e38;
+}
+
+#modo-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 36px;
+    height: 36px;
+    background-color: #222;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.15);
+    transition: background-color 0.3s ease;
+}
+
+#modo-btn:hover {
+    background-color: #333;
+}
+
+nav {
+    background-color: #111;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+nav ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+nav ul a.nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 15px 20px;
+    display: block;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav ul a.nav-link:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+main section.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+    gap: 20px;
+}
+
+.flex-about-me {
+    flex: 1 1 300px;
+    background-color: #1a1a1a;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 8px rgba(255,255,255,0.05);
+}
+
+figure {
+    max-width: 300px;
+    margin: 15px auto;
+}
+
+img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(255,255,255,0.1);
+}
+
+figcaption {
+    text-align: center;
+    font-size: 0.9em;
+    color: #aaaaaa;
+    margin-top: 8px;
+}
+
+.flex-articles {
+    flex: 2 1 600px;
+    padding: 20px;
+    background-color: #1a1a1a;
+    border-radius: 16px;
+    box-shadow: 0 4px 8px rgba(255,255,255,0.05);
+}
+
+.flex-articles figure {
+    max-width: 300px;
+    margin: 15px auto;
+}
+
+.flex-articles img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(255,255,255,0.1);
+}
+
+footer {
+    background-color: #111;
+    color: white;
+    text-align: center;
+    padding: 30px;
+    border-top: 2px solid #0a3e38;
+}
+
+@media screen and (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+    }
+
+    main section.flex-container {
+        flex-direction: column;
+    }
+}

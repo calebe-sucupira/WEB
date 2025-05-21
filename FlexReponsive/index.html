@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link id="tema" rel="stylesheet" href="style.css">
+    <title>Camada por Camada</title>
+</head>
+
+<body>
+    <header>
+        <h1>Camada por Camada</h1>
+        <p>Descubra o universo da <strong>impressão 3D</strong> com projetos, dicas e mais!</p>
+        <button id="modo-btn" onclick="setDarkMode()">Alternar modo</button>
+    </header>
+
+    <nav>
+        <ul>
+            <a class="nav-link" href="#">Início</a>
+            <a class="nav-link" href="#">Projetos</a>
+            <a class="nav-link" href="#">Dicas e Manutenção</a>
+            <a class="nav-link" href="#">Downloads</a>
+            <a class="nav-link" href="#">Contato</a>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="flex-container">
+            <aside class="flex-about-me">
+                <p>Foto da bancada:</p>
+                <figure>
+                    <img src="https://loja3d.com.br/wp-content/uploads/2024/08/printing-tronxy-x5sa-pro-3d-printer-new-version-3d-printing-with-tr-sensor-auto-leveling-lattice-glass-plate-004.webp" alt="Bancada de Impressão 3D">
+                    <figcaption>Impressora 3D Core XY</figcaption>  
+                </figure>
+                <p>Este site foi criado para compartilhar experiências, dicas e projetos com foco em impressão 3D.</p>
+
+                <h3>Conteúdos Populares</h3>
+                <p>Explore os mais acessados:</p>
+                
+                    <figure>
+                        <img src="https://lh6.googleusercontent.com/T2w_sfwjWXYSMWKETn9JrSzPsti6wENFIUP2d893vWIvZb7RhxykyI3Gt-Ki4hYUXeRijI7Q-fxPoNYGca7JhiXFVjkRWY985NmGQbKaJGLwnx7nfzj8Fh0iffw0pyF9WzMSJkFc" alt="Guia de Filamentos">
+                        <figcaption>Impressão 3D do mês</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="https://m.media-amazon.com/images/I/71TVV2qgL2L.jpg" alt="Guia de Impressoras 3D">
+                        <figcaption>Filamento PLA Inland(Custo benefício)</figcaption> 
+                    </figure>
+            
+
+                <h3>Filamentos Favoritos</h3>
+                <ul>
+                    <li>PLA</li>
+                    <li>ABS</li>
+                    <li>PETG</li>
+                    <li>TPU (Flexível)</li>
+                </ul>
+            </aside>
+
+            <section class="flex-articles">
+                <article>
+                    <h3>Fundamentos da Impressão 3D</h3>
+                    <figure>
+                        <img src="https://www.facil3d.com.br/imagens/informacoes/impressao-3d-fdm-01.jpg" alt="Fundamentos da Impressão 3D">
+                        <figcaption>Impressão 3D: Fundamentos e Tecnologias</figcaption>        
+                    </figure>
+                    <p>Tecnologia de fabricação aditiva que constrói objetos camada por camada. Principais características:</p>
+                    <ul>
+                        <li>Materiais: Plástico, metal, resina e concreto</li>
+                        <li>Processos: FDM, SLA, SLS, DMLS e outros</li>
+                        <li>Aplicações: Prototipagem, peças funcionais e arte</li>
+                    </ul>
+                </article>
+
+                <article>
+                    <h3>Tecnologias de Impressão 3D</h3>
+                    <figure>
+                        <img src="https://manufactur3dmag.com/wp-content/uploads/2024/02/Above-3D-Printed-parts-made-in-FDM-SLA-SLS-technology-from-left-to-right-Image-Credit-Formlabs.jpg" alt="Comparativo entre FDM, SLA e SLS">
+                        <figcaption>Comparativo entre FDM, SLA e SLS</figcaption>
+                    </figure>
+                    <table>
+                        <tr>
+                            <th>Tecnologia</th>
+                            <th>Materiais</th>
+                            <th>Precisão</th>
+                        </tr>
+                        <tr>
+                            <td>FDM</td>
+                            <td>Filamentos plásticos</td>
+                            <td>100-300 microns</td>
+                        </tr>
+                        <tr>
+                            <td>SLA</td>
+                            <td>Resinas UV</td>
+                            <td>25-100 microns</td>
+                        </tr>
+                        <tr>
+                            <td>SLS</td>
+                            <td>Nylon em pó</td>
+                            <td>80-120 microns</td>
+                        </tr>
+                    </table>
+                    <p>+8 tecnologias detalhadas incluindo MJF e PolyJet</p>
+                </article>
+
+                <article>
+                    <h3>Preparação para Impressão</h3>
+                    <figure>
+                        <img src="https://support.ultimaker.com/servlet/rtaImage?eid=ka05b000000XzvK&feoid=00N5b00000DhP2e&refid=0EM5b00000BUzmU" alt="Interface do software Cura">
+                        <figcaption>Interface do software Cura</figcaption>
+                    </figure>
+                    <h4>Configurações Essenciais:</h4>
+                    <ul>
+                        <li><strong>Altura da Camada:</strong> 0.1mm (alta qualidade) a 0.3mm (rápido)</li>
+                        <li><strong>Preenchimento:</strong> 20-50% para maioria das aplicações</li>
+                        <li><strong>Aderência:</strong> Brim, Raft ou Skirt conforme necessidade</li>
+                    </ul>
+                    <h4>Dicas de Calibração:</h4>
+                    <ul>
+                        <li>Nivelamento manual ou automático da mesa</li>
+                        <li>Teste de temperatura por material</li>
+                        <li>Verificação de fluxo do extrusor</li>
+                    </ul>
+                </article>
+
+                <article>
+                    <h3>Fontes de Modelos 3D</h3>
+                    <figure>
+                        <img src="https://www.oaloo.com.br/wp-content/uploads/2020/07/modelos-3D-thingiverse.bmp" alt="Exemplo da página do Thingiverse">
+                        <figcaption>Exemplo da página do Thingiverse</figcaption>
+                    </figure>
+                    <div class="grid-2col">
+                        <div>
+                            <h4>Repositórios Online:</h4>
+                            <ul>
+                                <li>Thingiverse</li>
+                                <li>Cults3D</li>
+                                <li>GrabCAD</li>
+                                <li>MyMiniFactory</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4>Softwares de Modelagem:</h4>
+                            <ul>
+                                <li>Tinkercad (iniciantes)</li>
+                                <li>Fusion 360 (engenharia)</li>
+                                <li>Blender (artístico)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <article>
+                    <h3>Solução de Problemas Comuns</h3>
+                    <figure>
+                        <img src="https://www.wishbox.net.br/wp-content/uploads/2019/07/How_to_fiz_warping.png" alt="Problema de warping em impressão 3D">
+                        <figcaption>Problema de warping em impressão 3D</figcaption>
+                    </figure>
+                    <table class="problemas-table">
+                        <tr>
+                            <th>Problema</th>
+                            <th>Solução</th>
+                        </tr>
+                        <tr>
+                            <td>Warping</td>
+                            <td>Mesa aquecida + adesivo</td>
+                        </tr>
+                        <tr>
+                            <td>Stringing</td>
+                            <td>Ajustar retração (3-6mm)</td>
+                        </tr>
+                        <tr>
+                            <td>Camadas desalinhadas</td>
+                            <td>Verificar tensão das correias</td>
+                        </tr>
+                        <tr>
+                            <td>Extrusão irregular</td>
+                            <td>Limpar bico e verificar filamento</td>
+                        </tr>
+                    </table>
+                    <p>Lista completa com 20 problemas: <a href="https://3dlab.com.br/20-principais-erros-de-impressao/">Guia 3DLab</a></p>
+                </article>
+
+                <article>
+                    <h3>Técnicas Avançadas</h3>
+                    <h4>Impressão em Camisetas:</h4>
+                    <pre>
+Configurações Recomendadas:
+- Temperatura bico: 215°C
+- Temperatura mesa: 85-90°C
+- Velocidade: 20mm/s
+- Offset Z: 1mm
+- Sem refrigeração
+                    </pre>
+                    <h4>Dicas de Pós-processamento:</h4>
+                    <ul>
+                        <li>Lixa para remover imperfeições</li>
+                        <li>Acetona vapor para acabamento liso (ABS)</li>
+                        <li>Primer para pintura</li>
+                    </ul>
+                </article>
+
+                <article>
+                    <h3>Escolha de Filamentos</h3>
+                    <table class="filamentos-table">
+                        <tr>
+                            <th>Material</th>
+                            <th>Temperatura</th>
+                            <th>Aplicação</th>
+                        </tr>
+                        <tr>
+                            <td>PLA</td>
+                            <td>190-220°C</td>
+                            <td>Projetos gerais</td>
+                        </tr>
+                        <tr>
+                            <td>ABS</td>
+                            <td>230-250°C</td>
+                            <td>Peças resistentes</td>
+                        </tr>
+                        <tr>
+                            <td>PETG</td>
+                            <td>220-250°C</td>
+                            <td>Resistência química</td>
+                        </tr>
+                        <tr>
+                            <td>TPU</td>
+                            <td>210-230°C</td>
+                            <td>Flexíveis</td>
+                        </tr>
+                    </table>
+                </article>
+            </section>
+        </section>
+    </main>
+
+    <footer>
+        <p><strong>&copy; 2025 - Camada por Camada</strong> | Desenvolvido por entusiastas da impressão 3D</p>
+    </footer>
+
+    <script>
+        function setDarkMode() {
+            const link = document.getElementById("tema");
+            const btn = document.getElementById("modo-btn");
+
+            if (link.getAttribute("href") === "style.css") {
+                link.setAttribute("href", "darkmode.css");
+                btn.textContent = "☀️";
+            } else {
+                link.setAttribute("href", "style.css");
+                btn.textContent = "🌙";
+            }
+        }
+
+        window.onload = () => {
+            const link = document.getElementById("tema");
+            const btn = document.getElementById("modo-btn");
+            btn.textContent = link.getAttribute("href") === "darkmode.css" ? "☀️" : "🌙";
+        };
+    </script>
+</body>
+
+</html>

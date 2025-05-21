@@ -1,0 +1,68 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+h1 {
+    color: #333;
+}
+
+label {
+    font-weight: bold;
+}
+
+input {
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#resultado {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+#resultado h2 {
+    margin: 0;
+}
+
+#resultado span {
+    font-weight: bold;
+}
+
+#resultado h2 span {
+    color: #007BFF;
+}
+
+#resultado h2 span#situacao {
+    color: #28a745;
+}
+
+#resultado h2 span#situacao:contains('Reprovado') {
+    color: #dc3545;
+}
+
+#resultado h2 span#situacao:contains('Recuperação') {
+    color: #ffc107;
+}
+#resultado h2 span#situacao:contains('Aprovado') {
+    color: #28a745;
+}
