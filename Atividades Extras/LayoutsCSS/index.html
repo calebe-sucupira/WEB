@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link id="tema" rel="stylesheet" href="layout0.css">
+    <title>Layouts</title>
+</head>
+
+<body>
+    <h1>Múltiplos Layouts</h1>
+    
+    <h3>Layout Escolhido: <span id="nuemro">0</span></h3>
+    <button onclick="setLayout0()"">Layout 0</button>
+    <button onclick="setLayout1()">Layout 1</button>   
+    <button onclick="setLayout2()">Layout 2</button>
+    <button onclick="setLayout3()">Layout 3</button>
+    <button onclick="noLayout()">No Layout</button>
+    <button onclick="toggle()">Toggle</button>
+    <button onclick="circular()">Circular</button>
+
+    <p id="p-0"> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
+        laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper
+        suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in
+        vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et
+        iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
+    </p>
+    <p id="p-1"> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
+        laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper
+        suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in
+        vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et
+        iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
+    </p>
+    <p id="p-2"> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
+        laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper
+        suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in
+        vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et
+        iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.      
+    </p>
+    <p id="p-3"> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
+        laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper
+        suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in
+        vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et
+        iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
+    </p>   
+
+    <script>
+
+        let index = 1;
+        function circular() {
+            let  link  = document.getElementById("tema");
+            //link.href = "layout" + index + ".css";
+            link.href = `layout${index}.css`;
+            document.getElementById("nuemro").innerHTML = index;
+            index = (index + 1) % 4;
+        }
+
+        let flag = true;
+        function toggle() {
+            let  link  = document.getElementById("tema");
+            if (flag) {
+                link.href = "layout1.css";
+                document.getElementById("nuemro").innerHTML = 1;
+                flag = false;
+            } else {
+                link.href = "layout0.css";
+                document.getElementById("nuemro").innerHTML = 0;
+
+                flag = true;
+            }
+        }
+        function setLayout0() {
+            let  link  = document.getElementById("tema");
+            link.href = "layout0.css";
+            document.getElementById("nuemro").innerHTML = 0;
+        }
+
+        function setLayout1() {
+            let  link  = document.getElementById("tema");
+            link.href = "layout1.css";
+            document.getElementById("nuemro").innerHTML = 1;
+        }
+
+        function setLayout2() {
+            let  link  = document.getElementById("tema");
+            link.href = "layout2.css";
+            document.getElementById("nuemro").innerHTML = 2;
+        }
+
+        function setLayout3() {
+            let  link  = document.getElementById("tema");
+            link.href = "layout3.css";
+            document.getElementById("nuemro").innerHTML = 3;
+        }
+
+        function noLayout() {
+            let  link  = document.getElementById("tema");
+            link.href = " ";
+            document.getElementById("nuemro").innerHTML = "-";
+        }
+
+    </script>
+</body>
+
+</html>
