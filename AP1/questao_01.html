@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questão 01</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            border: 1px solid #000;
+            padding: 20px;
+            text-align: center;
+        }
+
+        main {
+            flex: 1 0 auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            display: flex;
+            flex: 1;
+            min-height: 0;
+        }
+
+        .menu-lateral {
+            width: 30%;
+            border: 1px solid #000;
+            display: flex;
+            flex-direction: column;
+            min-height: 100%;
+            padding-bottom: 0;
+        }
+
+        .menu-lateral h2 {
+            margin-left: 16px;
+        }
+
+        .menu-lateral ul {
+            list-style: none;
+            padding: 0 0 0 8px;
+            margin: 0;
+        }
+
+        .menu-lateral ul li {
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu-lateral ul a {
+            text-decoration: none;
+            color: #000;
+            display: block;
+            padding: 8px 0 8px 0;
+            margin: 0;
+            text-align: left;
+        }
+
+        .conteudo {
+            width: 70%;
+            border: 1px solid #000;
+            padding: 16px;
+        }
+
+        .fake-img {
+            width: 30%;
+            height: 200px;
+            background-color: #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        footer {
+            border: 1px solid #000;
+            text-align: center;
+            width: 100%;
+            position: relative;
+            padding: 8px 0 4px 0;
+        }
+
+        @media screen and (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .menu-lateral,
+            .conteudo {
+                width: 100%;
+            }
+
+            .menu-lateral {
+                min-height: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Desenvolvimento de Software WEB</h1>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="menu-lateral">
+                <h2>[Menu Lateral]</h2>
+                <ul>
+                    <li><a href="#">Link 1</a></li>
+                    <li><a href="#">Link 2</a></li>
+                    <li><a href="#">Link 3</a></li>
+                    <li><a href="#">Link 4</a></li>
+                </ul>
+            </section>
+
+            <section class="conteudo">
+                <h2>[Conteúdo]</h2>
+                <h2>Introdução ao HTML</h2>
+                <p>Ipsum Lorem…</p>
+                <div class="fake-img">[img.png]</div>
+                <p>Ipsum Lorem…</p>
+                <div class="fake-img">[img.png]</div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <a href="#">calebesucupira@alu.ufc.br</a>
+        <p>2025.1</p>
+        <p>Todos os direitos reservados</p>
+    </footer>
+</body>
+
+</html>

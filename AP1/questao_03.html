@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questão 3</title>
+</head>
+<body>
+    <div style="text-align: center; margin-top: 50px;">
+        <img id="pokemonImage" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg" alt="Pokémon" style="width: 200px; height: auto;">
+        <div style="margin-top: 20px;">
+            <button onclick="changePokemon(-1)">Voltar -1</button>
+            <button onclick="changePokemon(1)">Adiantar +1</button>
+        </div>
+    </div>
+
+    <script>
+        let pokemonId = 1;
+
+        function changePokemon(direction) {
+            const newId = pokemonId + direction;
+            if (newId > 0 && newId <= 100) {
+                pokemonId = newId;
+                const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemonId}.svg`;
+                document.getElementById('pokemonImage').src = imageUrl;
+            }
+        }
+    </script>
+
+</body>
+</html>
