@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Alunos</title>
+    <style>
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .form-container {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            width: 80%; 
+        }
+        .form-container label, .form-container input {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .form-container input[type="text"],
+        .form-container input[type="number"] {
+            width: 90%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            margin-right: 5px;
+            padding: 8px 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .cancel-button {
+            background-color: #6c757d;
+        }
+        .cancel-button:hover {
+            background-color: #5a6268;
+        }
+        .nav-links {
+            margin-bottom: 20px;
+        }
+        .nav-links button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .nav-links button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gerenciar Alunos</h1>
+
+    <div class="nav-links">
+        <a href="/alunos/listar"><button>Ir para Lista de Alunos</button></a>
+        <a href="/alunos/criar"><button>Ir para Criar Novo Aluno</button></a>
+    </div>
+
+    <div class="form-container">
+        <h2>Editar Aluno Selecionado</h2>
+        <form id="editStudentForm">
+            <input type="hidden" id="editNomeOriginal" name="nomeOriginal">
+
+            <label for="editNome">Nome:</label>
+            <input type="text" id="editNome" name="nome" required><br>
+            <label for="editCurso">Curso:</label>
+            <input type="text" id="editCurso" name="curso" required><br>
+            <label for="editIra">IRA:</label>
+            <input type="number" id="editIra" name="ira" step="0.01" min="0" max="10" required><br>
+            <button type="submit">Salvar Edição</button>
+            <button type="button" id="clearFormButton" class="cancel-button">Limpar Formulário</button>
+        </form>
+    </div>
+
+    <table id="alunosTable">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Curso</th>
+                <th>IRA</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            </tbody>
+    </table>
+    <p>Média dos IRAs: <span id="mediaIra"></span></p>
+
+    <script>
+        const API_BASE_URL = '/api/alunos';
+
+        async function loadStudents() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/listar`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+
+                const tableBody = document.querySelector('#alunosTable tbody');
+                tableBody.innerHTML = ''; 
+                let totalIra = 0;
+                let numAlunos = 0;
+
+                data.forEach(aluno => {
+                    const row = tableBody.insertRow();
+                    row.insertCell().textContent = aluno.nome;
+                    row.insertCell().textContent = aluno.curso;
+                    row.insertCell().textContent = aluno.ira.toFixed(2);
+
+                    const actionsCell = row.insertCell();
+
+                    const editButton = document.createElement('button');
+                    editButton.textContent = 'Editar';
+                    editButton.onclick = () => fillEditForm(aluno);
+                    actionsCell.appendChild(editButton);
+
+                    const deleteButton = document.createElement('button');
+                    deleteButton.textContent = 'Apagar';
+                    deleteButton.onclick = () => deleteStudent(aluno.nome);
+                    actionsCell.appendChild(deleteButton);
+
+                    totalIra += aluno.ira;
+                    numAlunos++;
+                });
+
+                const mediaIraElement = document.getElementById('mediaIra');
+                if (numAlunos > 0) {
+                    const media = totalIra / numAlunos;
+                    mediaIraElement.textContent = media.toFixed(2);
+                } else {
+                    mediaIraElement.textContent = 'N/A';
+                }
+            } catch (error) {
+                console.error('Erro ao buscar dados dos alunos:', error);
+            }
+        }
+
+        function fillEditForm(aluno) {
+            document.getElementById('editNomeOriginal').value = aluno.nome;
+            document.getElementById('editNome').value = aluno.nome;
+            document.getElementById('editCurso').value = aluno.curso;
+            document.getElementById('editIra').value = aluno.ira;
+        }
+
+        document.getElementById('clearFormButton').addEventListener('click', () => {
+            document.getElementById('editStudentForm').reset();
+            document.getElementById('editNomeOriginal').value = ''; 
+        });
+
+        document.getElementById('editStudentForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const nomeOriginal = document.getElementById('editNomeOriginal').value;
+            if (!nomeOriginal) {
+                alert('Selecione um aluno da lista para editar.');
+                return;
+            }
+
+            const newData = {
+                nome: document.getElementById('editNome').value,
+                curso: document.getElementById('editCurso').value,
+                ira: parseFloat(document.getElementById('editIra').value)
+            };
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/editar/${encodeURIComponent(nomeOriginal)}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(newData)
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(`HTTP error! status: ${response.status}, message: ${errorData.message || 'Erro desconhecido'}`);
+                }
+
+                alert('Aluno editado com sucesso!');
+                document.getElementById('editStudentForm').reset();
+                document.getElementById('editNomeOriginal').value = ''; 
+                loadStudents(); 
+            } catch (error) {
+                console.error('Erro ao editar aluno:', error);
+                alert('Erro ao editar aluno: ' + error.message);
+            }
+        });
+
+        async function deleteStudent(nomeAluno) {
+            if (!confirm(`Tem certeza que deseja apagar o aluno ${nomeAluno}?`)) {
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/apagar/${encodeURIComponent(nomeAluno)}`, {
+                    method: 'DELETE'
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(`HTTP error! status: ${response.status}, message: ${errorData.message || 'Erro desconhecido'}`);
+                }
+
+                alert('Aluno apagado com sucesso!');
+                loadStudents(); 
+            } catch (error) {
+                console.error('Erro ao apagar aluno:', error);
+                alert('Erro ao apagar aluno: ' + error.message);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', loadStudents);
+    </script>
+</body>
+</html>

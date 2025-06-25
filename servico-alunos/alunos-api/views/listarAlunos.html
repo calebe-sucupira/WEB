@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Alunos</title>
+    <style>
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .nav-links {
+            margin-bottom: 20px;
+        }
+        .nav-links button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .nav-links button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista de Alunos</h1>
+
+    <div class="nav-links">
+        <a href="/alunos/criar"><button>Criar Novo Aluno</button></a>
+        <a href="/alunos/editar"><button>Gerenciar Alunos (Editar/Apagar)</button></a>
+    </div>
+
+    <table id="alunosTable">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Curso</th>
+                <th>IRA</th>
+            </tr>
+        </thead>
+        <tbody>
+            </tbody>
+    </table>
+    <p>Média dos IRAs: <span id="mediaIra"></span></p>
+
+    <script>
+        const API_BASE_URL = '/api/alunos';
+
+        async function loadStudents() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/listar`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+
+                const tableBody = document.querySelector('#alunosTable tbody');
+                tableBody.innerHTML = '';
+                let totalIra = 0;
+                let numAlunos = 0;
+
+                data.forEach(aluno => {
+                    const row = tableBody.insertRow();
+                    row.insertCell().textContent = aluno.nome;
+                    row.insertCell().textContent = aluno.curso;
+                    row.insertCell().textContent = aluno.ira.toFixed(2);
+                    totalIra += aluno.ira;
+                    numAlunos++;
+                });
+
+                const mediaIraElement = document.getElementById('mediaIra');
+                if (numAlunos > 0) {
+                    const media = totalIra / numAlunos;
+                    mediaIraElement.textContent = media.toFixed(2);
+                } else {
+                    mediaIraElement.textContent = 'N/A';
+                }
+            } catch (error) {
+                console.error('Erro ao buscar dados dos alunos:', error);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', loadStudents);
+    </script>
+</body>
+</html>
