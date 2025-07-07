@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Produtos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background-color: #ffffff;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .summary-section {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .produto-caro {
+            background-color: #ffcccc;
+        }
+        .produto-barato {
+            background-color: #ccffcc;
+        }
+        .acima-da-media {
+            border-left: 4px solid #007bff;
+        }
+
+        .erro {
+            color: #d93025;
+            font-weight: bold;
+        }
+
+        #status-container {
+            text-align: center;
+            padding: 20px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Catálogo de Produtos </h1>
+    </header>
+
+    <main>
+        <section id="status-container"></section>
+
+        <div id="tabela-container"></div>
+
+        <div class="summary-section">
+            <h2>Resumo dos Produtos </h2>
+            <div id="estatisticas-container">
+                </div>
+        </div>
+    </main>
+
+   <script>
+    function calcularEstatisticas(produtos) {
+        if (!produtos || produtos.length === 0) {
+            return { media: 0, maisCaro: null, maisBarato: null };
+        }
+        const totalPrecos = produtos.reduce((soma, produto) => soma + produto.PREÇO, 0);
+        const media = totalPrecos / produtos.length;
+        const maisCaro = produtos.reduce((caro, atual) => (atual.PREÇO > caro.PREÇO ? atual : caro));
+        const maisBarato = produtos.reduce((barato, atual) => (atual.PREÇO < barato.PREÇO ? atual : barato));
+        return { media, maisCaro, maisBarato };
+    }
+
+    const formatarPreco = (valor) => {
+        return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    };
+
+    function exibirEstatisticas(estatisticas) {
+        const container = document.getElementById('estatisticas-container');
+        container.innerHTML = `
+            <p><strong>Média de Preços:</strong> ${formatarPreco(estatisticas.media)}</p>
+            <p><strong>Produto Mais Caro:</strong> ${estatisticas.maisCaro.NOME} (${formatarPreco(estatisticas.maisCaro.PREÇO)})</p>
+            <p><strong>Produto Mais Barato:</strong> ${estatisticas.maisBarato.NOME} (${formatarPreco(estatisticas.maisBarato.PREÇO)})</p>
+        `;
+    }
+
+    function exibirTabela(produtos, estatisticas) {
+        const container = document.getElementById('tabela-container');
+        const cabecalho = `
+            <table class="tabela-produtos">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome do Produto</th>
+                        <th>Tipo</th>
+                        <th>Preço</th>
+                    </tr>
+                </thead>
+                <tbody>
+        `;
+        const linhas = produtos.map(produto => {
+            let classes = [];
+            if (produto.PREÇO > estatisticas.media) classes.push('acima-da-media');
+            if (produto.ID === estatisticas.maisCaro.ID) classes.push('produto-caro');
+            if (produto.ID === estatisticas.maisBarato.ID) classes.push('produto-barato');
+            return `
+                <tr class="${classes.join(' ')}">
+                    <td>${produto.ID}</td>
+                    <td>${produto.NOME}</td>
+                    <td>${produto.TIPO}</td>
+                    <td>${formatarPreco(produto.PREÇO)}</td>
+                </tr>
+            `;
+        }).join('');
+        const rodape = `
+                </tbody>
+            </table>
+        `;
+        container.innerHTML = cabecalho + linhas + rodape;
+    }
+
+    function getPromise() {
+        return new Promise(
+            (resolve, reject) => {
+                setTimeout(
+                    () => {
+                        const number = Math.floor(Math.random() * 100);
+                        if (number % 2 === 0) {
+                            const listaDeProdutos = [
+                                { ID: 1, NOME: "Notebook Gamer", TIPO: "Eletrônico", PREÇO: 7500.00 },
+                                { ID: 2, NOME: "Mouse sem fio", TIPO: "Acessório", PREÇO: 150.00 },
+                                { ID: 3, NOME: "Teclado Mecânico", TIPO: "Acessório", PREÇO: 350.00 },
+                                { ID: 4, NOME: "Monitor 27 polegadas", TIPO: "Eletrônico", PREÇO: 1800.00 },
+                                { ID: 5, NOME: "Cadeira Gamer", TIPO: "Móvel", PREÇO: 1200.00 },
+                                { ID: 6, NOME: "Headset 7.1", TIPO: "Acessório", PREÇO: 450.00 },
+                                { ID: 7, NOME: "SSD 1TB", TIPO: "Hardware", PREÇO: 600.00 },
+                                { ID: 8, NOME: "Placa de Vídeo RTX", TIPO: "Hardware", PREÇO: 4500.00 },
+                                { ID: 9, NOME: "Webcam 4K", TIPO: "Eletrônico", PREÇO: 800.00 },
+                                { ID: 10, NOME: "Mesa de Escritório", TIPO: "Móvel", PREÇO: 950.00 },
+                            ];
+                            resolve(listaDeProdutos)
+                        } else {
+                            reject(new Error('ERRO NO SISTEMA: Falha simulada ao buscar os dados.'))
+                        }
+                    }, 4000
+                )
+            }
+        )
+    }
+
+    async function consumePromise() {
+        const statusContainer = document.getElementById('status-container');
+        const estatisticasContainer = document.getElementById('estatisticas-container');
+        const tabelaContainer = document.getElementById('tabela-container');
+
+        statusContainer.innerHTML = '<h2>Carregando dados...</h2>';
+        estatisticasContainer.innerHTML = '';
+        tabelaContainer.innerHTML = '';
+
+        try {
+            const response = await getPromise();
+            statusContainer.innerHTML = '';
+
+            const estatisticas = calcularEstatisticas(response);
+            exibirEstatisticas(estatisticas);
+
+            if (response.length > 0) {
+                 exibirTabela(response, estatisticas);
+                 document.querySelector('.summary-section').style.display = 'block';
+            } else {
+                 document.querySelector('.summary-section').style.display = 'none';
+            }
+
+        } catch (erro) {
+            statusContainer.innerHTML = `<h2 class="erro">${erro.message}</h2>`;
+            document.querySelector('.summary-section').style.display = 'none';
+        }
+    }
+
+    consumePromise();
+</script>
+</body>
+
+</html>
